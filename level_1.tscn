@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://dqyp1cbtuh7we"]
+
+[ext_resource type="Script" path="res://level_1.gd" id="1_1s4ew"]
+[ext_resource type="PackedScene" uid="uid://dpu8vspolrbio" path="res://Objects/player_1.tscn" id="1_7ehvk"]
+[ext_resource type="Shader" path="res://level_1.gdshader" id="2_or0ys"]
+[ext_resource type="Texture2D" uid="uid://ni863x4av0rs" path="res://Sprites/wall shader temp.png" id="3_2o5ic"]
+[ext_resource type="Texture2D" uid="uid://d0x07vhcwh6gh" path="res://Sprites/temp_wall.png" id="3_kfqb8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f7yn3"]
+shader = ExtResource("2_or0ys")
+shader_parameter/glow_color = Color(0, 0, 0, 0)
+shader_parameter/emission_texture = ExtResource("3_2o5ic")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a2jq5"]
+texture = ExtResource("3_kfqb8")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_ef2lq"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_a2jq5")
+
+[sub_resource type="Environment" id="Environment_2eh1q"]
+background_mode = 3
+glow_enabled = true
+glow_blend_mode = 0
+
+[node name="Level_1" type="Node2D"]
+script = ExtResource("1_1s4ew")
+player_scene = ExtResource("1_7ehvk")
+
+[node name="TileMap" type="TileMap" parent="."]
+material = SubResource("ShaderMaterial_f7yn3")
+tile_set = SubResource("TileSet_ef2lq")
+format = 2
+layer_0/tile_data = PackedInt32Array(131062, 0, 0, 131063, 0, 0, 131064, 0, 0, 131065, 0, 0, 131066, 0, 0, 131067, 0, 0, 131068, 0, 0, 131069, 0, 0, 131070, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 0, 0, 65547, 0, 0, 65548, 0, 0, -131074, 0, 0, -131073, 0, 0, -196608, 0, 0, -196607, 0, 0, -196606, 0, 0, -196605, 0, 0, -196604, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2eh1q")
+
+[node name="player_spawn_locations" type="Node2D" parent="."]
+
+[node name="0" type="Node2D" parent="player_spawn_locations" groups=["spawn_locations"]]
+position = Vector2(-98, -23)
+
+[node name="1" type="Node2D" parent="player_spawn_locations" groups=["spawn_locations"]]
+position = Vector2(152, -22)
